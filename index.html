@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Cờ Vua">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#121826">
+<title>Cờ Vua</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%235b7a99'/%3E%3Ctext x='50' y='76' font-size='72' text-anchor='middle' fill='%23fff'%3E%E2%99%9E%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" id="ati" href="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#121826;--pan:#1c2438;--ink:#eef0f6;--mut:#8c95ab;--lt:#e9e4d4;--dk:#5b7a99;--hi:#f2c14e;--red:#e5484d}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:"Be Vietnam Pro",system-ui,-apple-system,sans-serif;overflow:hidden;touch-action:manipulation}
+body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+.scr{display:none;height:100%;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:14px}
+.scr.on{display:flex}
+button{font:inherit;color:inherit;border:0;cursor:pointer}
+h1{margin:0;font-size:clamp(40px,9vw,64px);font-weight:800;letter-spacing:-.02em}
+.sub{color:var(--mut);margin:-6px 0 6px;font-size:15px}
+.g{width:min(440px,100%);display:flex;flex-direction:column;gap:6px}
+.g[hidden]{display:none}
+.g label{font-size:13px;color:var(--mut)}
+.seg{display:flex;background:var(--pan);border-radius:12px;padding:3px;gap:3px}
+.seg b{flex:1;text-align:center;padding:11px 4px;border-radius:10px;font-weight:600;font-size:15px;cursor:pointer;color:var(--mut)}
+.seg b.on{background:var(--dk);color:#fff}
+.go{width:min(440px,100%);margin-top:8px;padding:16px;border-radius:14px;background:var(--hi);color:#1a1405;font-weight:800;font-size:18px}
+.pan{width:var(--s);display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-radius:12px;background:var(--pan);border:2px solid transparent;font-weight:600}
+.pan.rot{transform:rotate(180deg)}
+.pan.act{border-color:var(--dk)}
+.pan.pend{border-color:var(--hi);animation:pl 1s infinite alternate}
+@keyframes pl{to{background:#3a3220}}
+.ck{font-size:26px;font-variant-numeric:tabular-nums;font-weight:800}
+.ck.low{color:var(--red)}
+#game{--s:min(96vw,calc(100dvh - 280px),760px);gap:8px}
+#bd{width:var(--s);height:var(--s);display:grid;grid-template:repeat(8,1fr)/repeat(8,1fr);border-radius:6px;overflow:hidden;box-shadow:0 10px 40px #0008}
+.sq{display:flex;align-items:center;justify-content:center;position:relative}
+.sq.l{background:var(--lt)}.sq.d{background:var(--dk)}
+.sq.lm::before{content:"";position:absolute;inset:0;background:#f2c14e66}
+.sq.sel::before{content:"";position:absolute;inset:0;background:#f2c14eaa}
+.sq.chk{background-image:radial-gradient(var(--red),#e5484d00 75%)}
+.sq.mv::after{content:"";position:absolute;width:28%;height:28%;border-radius:50%;background:#1a1a2e55}
+.sq.mv.cap::after{width:88%;height:88%;background:none;border:5px solid #1a1a2e55}
+.p{position:relative;z-index:1;font-size:calc(var(--s)/8*.82);line-height:1;font-family:"Apple Symbols","Segoe UI Symbol",serif}
+.p.w{color:#fff;text-shadow:0 0 2px #000,0 1px 3px #000a}
+.p.b{color:#17171c;text-shadow:0 1px 0 #ffffff59}
+#st{height:22px;color:var(--mut);font-size:15px}
+.bar{display:flex;gap:8px;width:var(--s)}
+.bar button{flex:1;padding:12px 4px;border-radius:12px;background:var(--pan);font-weight:600;font-size:14px}
+.bar button:disabled{opacity:.35}
+.mu{position:fixed;top:calc(env(safe-area-inset-top) + 10px);right:calc(env(safe-area-inset-right) + 12px);width:44px;height:44px;border-radius:50%;background:var(--pan);font-size:20px;z-index:5}
+.mu.off{opacity:.5}
+#ov{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;z-index:9}
+#ov.on{display:flex}
+#ov div{background:var(--pan);padding:26px;border-radius:18px;text-align:center;width:min(340px,86vw);display:flex;flex-direction:column;gap:10px}
+#ov h2{margin:0 0 8px;font-size:24px}
+#ov button{padding:14px;border-radius:12px;background:var(--dk);font-weight:600}
+#ov button.pri{background:var(--hi);color:#1a1405}
+@media(prefers-reduced-motion:reduce){.pan.pend{animation:none}}
+</style>
+</head>
+<body>
+<button class="mu" id="mu" aria-label="Bật/tắt nhạc">🎵</button>
+
+<section id="menu" class="scr on">
+  <h1>♞ Cờ Vua</h1>
+  <p class="sub">Chọn cách chơi rồi bắt đầu</p>
+  <div class="g"><label>Thể loại</label><div class="seg" data-k="kind"><b data-v="normal" class="on">Cờ thường</b><b data-v="blitz">Cờ chớp (đồng hồ)</b></div></div>
+  <div class="g"><label>Đối thủ</label><div class="seg" data-k="vs"><b data-v="2p">2 người</b><b data-v="ai" class="on">Chơi với máy</b></div></div>
+  <div class="g" id="gLv"><label>Cấp độ máy</label><div class="seg" data-k="lv"><b data-v="0">Siêu dễ</b><b data-v="1">Dễ</b><b data-v="2" class="on">Vừa</b><b data-v="3">Khó</b></div></div>
+  <div class="g" id="gCol"><label>Bạn cầm quân</label><div class="seg" data-k="col"><b data-v="w" class="on">Trắng</b><b data-v="b">Đen</b></div></div>
+  <div class="g" id="gTm" hidden><label>Thời gian mỗi bên</label><div class="seg" data-k="tm"><b data-v="60000">1 phút</b><b data-v="180000" class="on">3 phút</b><b data-v="300000">5 phút</b><b data-v="600000">10 phút</b></div></div>
+  <button class="go" id="go">Bắt đầu chơi</button>
+</section>
+
+<section id="game" class="scr">
+  <div class="pan" id="pT"><span class="nm"></span><span class="ck"></span></div>
+  <div id="bd"></div>
+  <div class="pan" id="pB"><span class="nm"></span><span class="ck"></span></div>
+  <div id="st"></div>
+  <div class="bar"><button id="bU">↶ Đi lại</button><button id="bN">Ván mới</button><button id="bM">Menu</button></div>
+</section>
+
+<div id="ov"><div><h2 id="ovT"></h2><button class="pri" id="ovN">Ván mới</button><button id="ovM">Về menu</button></div></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const SY={K:'♚',Q:'♛',R:'♜',B:'♝',N:'♞',P:'♟\uFE0E'},V={P:100,N:320,B:330,R:500,Q:900,K:0};
+const DG=[[1,1],[1,-1],[-1,1],[-1,-1]],OR=[[1,0],[-1,0],[0,1],[0,-1]];
+const D={B:DG,R:OR,Q:[...DG,...OR],K:[...DG,...OR],N:[[1,2],[2,1],[-1,2],[-2,1],[1,-2],[2,-1],[-1,-2],[-2,-1]]};
+const LV=['Siêu dễ','Dễ','Vừa','Khó'],NM={w:'Trắng',b:'Đen'};
+
+/* ===== LUẬT CỜ ===== */
+function init(){const b=[];'rnbqkbnr'.split('').forEach((x,i)=>{b[i]='b'+x.toUpperCase();b[8+i]='bP';b[48+i]='wP';b[56+i]='w'+x.toUpperCase()});for(let i=16;i<48;i++)b[i]=null;return{b,t:'w',c:'KQkq',e:-1}}
+const ok=(r,c)=>r>=0&&r<8&&c>=0&&c<8;
+function att(b,s,by){const r=s>>3,c=s&7,pr=r+(by=='w'?1:-1);
+  if(pr>=0&&pr<8)for(const dc of[-1,1])if(ok(pr,c+dc)&&b[pr*8+c+dc]==by+'P')return 1;
+  for(const k of'NK')for(const[dr,dc]of D[k])if(ok(r+dr,c+dc)&&b[(r+dr)*8+c+dc]==by+k)return 1;
+  for(const[ks,dd]of[['BQ',DG],['RQ',OR]])for(const[dr,dc]of dd){let rr=r+dr,cc=c+dc;
+    while(ok(rr,cc)){const p=b[rr*8+cc];if(p){if(p[0]==by&&ks.includes(p[1]))return 1;break}rr+=dr;cc+=dc}}
+  return 0}
+const chk=(b,t)=>att(b,b.indexOf(t+'K'),t=='w'?'b':'w');
+function gen(S){const{b,t}=S,o=[],f=t=='w'?-1:1,opp=t=='w'?'b':'w';
+  for(let i=0;i<64;i++){const p=b[i];if(!p||p[0]!=t)continue;const r=i>>3,c=i&7,k=p[1];
+    if(k=='P'){const pr=r+f;if(pr<0||pr>7)continue;const pm=pr==0||pr==7?'Q':undefined,to=pr*8+c;
+      if(!b[to]){o.push({f:i,t:to,p:pm});if(r==(t=='w'?6:1)&&!b[to+f*8])o.push({f:i,t:to+f*8,d:1})}
+      for(const dc of[-1,1]){if(c+dc<0||c+dc>7)continue;const q=pr*8+c+dc;
+        if(b[q]&&b[q][0]==opp)o.push({f:i,t:q,p:pm});else if(q==S.e)o.push({f:i,t:q,ep:1})}}
+    else if(k=='N'||k=='K'){for(const[dr,dc]of D[k]){if(!ok(r+dr,c+dc))continue;const q=(r+dr)*8+c+dc;if(!b[q]||b[q][0]==opp)o.push({f:i,t:q})}}
+    else for(const[dr,dc]of D[k]){let rr=r+dr,cc=c+dc;while(ok(rr,cc)){const q=rr*8+cc;if(!b[q])o.push({f:i,t:q});else{if(b[q][0]==opp)o.push({f:i,t:q});break}rr+=dr;cc+=dc}}}
+  const ks=t=='w'?60:4;
+  if(b[ks]==t+'K'&&!att(b,ks,opp)){
+    if(S.c.includes(t=='w'?'K':'k')&&!b[ks+1]&&!b[ks+2]&&b[ks+3]==t+'R'&&!att(b,ks+1,opp)&&!att(b,ks+2,opp))o.push({f:ks,t:ks+2,cs:1});
+    if(S.c.includes(t=='w'?'Q':'q')&&!b[ks-1]&&!b[ks-2]&&!b[ks-3]&&b[ks-4]==t+'R'&&!att(b,ks-1,opp)&&!att(b,ks-2,opp))o.push({f:ks,t:ks-2,cs:1})}
+  return o}
+function mk(S,m){const b=S.b.slice(),p=b[m.f],t=S.t;let c=S.c,e=-1;
+  b[m.t]=m.p?t+m.p:p;b[m.f]=null;
+  if(m.ep)b[m.t+(t=='w'?8:-8)]=null;
+  if(m.cs){const row=m.f&~7;if(m.t>m.f){b[row+5]=b[row+7];b[row+7]=null}else{b[row+3]=b[row];b[row]=null}}
+  if(m.d)e=(m.f+m.t)/2;
+  if(p[1]=='K')c=c.replace(t=='w'?/[KQ]/g:/[kq]/g,'');
+  for(const[s,x]of[[0,'q'],[7,'k'],[56,'Q'],[63,'K']])if(m.f==s||m.t==s)c=c.replace(x,'');
+  return{b,t:t=='w'?'b':'w',c,e}}
+const legal=S=>gen(S).filter(m=>!chk(mk(S,m).b,S.t));
+
+/* ===== MÁY ===== */
+function ev(S){let s=0;for(let i=0;i<64;i++){const p=S.b[i];if(!p)continue;const r=i>>3,c=i&7,k=p[1];
+  let v=V[k]+(7-Math.abs(2*c-7)/2-Math.abs(2*r-7)/2)*(k=='P'?2:k=='K'?0:4);
+  if(k=='P')v+=(p[0]=='w'?6-r:r-1)*6;s+=p[0]=='w'?v:-v}
+  return S.t=='w'?s:-s}
+function order(L,S){const sc=m=>(S.b[m.t]?V[S.b[m.t][1]]*10-V[S.b[m.f][1]]:0)+(m.p?800:0);return L.sort((a,b)=>sc(b)-sc(a))}
+function ab(S,d,a,b,ply){
+  if(!d){if(chk(S.b,S.t)&&!legal(S).length)return-99999+ply;return ev(S)}
+  const L=order(legal(S),S);if(!L.length)return chk(S.b,S.t)?-99999+ply:0;
+  for(const m of L){const v=-ab(mk(S,m),d-1,-b,-a,ply+1);if(v>=b)return b;if(v>a)a=v}return a}
+function pick(S,lv){const L=legal(S);
+  if(lv==0){let best=L[0],bs=-1e9;for(const m of L){const n=mk(S,m);if(chk(n.b,n.t)&&!legal(n).length)continue;const v=ev(n)+Math.random()*40;if(v>bs){bs=v;best=m}}return best}
+  if(lv==1&&Math.random()<.5)return L[Math.random()*L.length|0];
+  const d=lv==1?1:lv==2?2:3;let best=L[0],bs=-1e9;
+  for(const m of order(L,S)){const v=-ab(mk(S,m),d-1,-1e6,lv==3?-bs:1e6,1)+(lv==3?0:Math.random()*6);if(v>bs){bs=v;best=m}}
+  return best}
+
+/* ===== TRẠNG THÁI GAME ===== */
+const opt={kind:'normal',vs:'ai',lv:2,col:'w',tm:180000};
+let S,hist,sel,last,over,busy,clk,run,lt,human,blitz,lm;
+const flip=()=>opt.vs=='ai'&&human=='b';
+
+function sync(){$('#gLv').hidden=$('#gCol').hidden=opt.vs!='ai';$('#gTm').hidden=opt.kind!='blitz'}
+document.querySelectorAll('.seg b').forEach(b=>b.onclick=()=>{const g=b.parentNode;g.querySelectorAll('b').forEach(x=>x.classList.toggle('on',x==b));const v=b.dataset.v;opt[g.dataset.k]=/^\d+$/.test(v)?+v:v;sync()});
+
+function newGame(){S=init();hist=[];sel=null;last=null;over=false;busy=false;blitz=opt.kind=='blitz';human=opt.col;
+  clk={w:opt.tm,b:opt.tm};run='w';lt=performance.now();$('#ov').classList.remove('on');
+  $('#bU').disabled=blitz;render();
+  if(opt.vs=='ai'&&human=='b')aiMove()}
+function show(id){document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('on',s.id==id))}
+$('#go').onclick=()=>{startMusic();show('game');newGame()};
+$('#bN').onclick=$('#ovN').onclick=newGame;
+$('#bM').onclick=$('#ovM').onclick=()=>{over=true;busy=false;$('#ov').classList.remove('on');show('menu')};
+$('#bU').onclick=()=>{if(busy||!hist.length)return;
+  let h;do{h=hist.pop()}while(opt.vs=='ai'&&hist.length&&h.S.t!=human);
+  if(opt.vs=='ai'&&h.S.t!=human){hist.length=0}
+  S=h.S;last=h.last;sel=null;over=false;$('#ov').classList.remove('on');render();
+  if(opt.vs=='ai'&&S.t!=human)aiMove()};
+
+function pending(){return blitz&&!over&&run!=S.t}
+function render(){lm=legal(S);const inC=chk(S.b,S.t),F=flip(),bd=$('#bd');bd.innerHTML='';
+  const tg=sel!=null?lm.filter(m=>m.f==sel):[];
+  for(let d=0;d<64;d++){const i=F?63-d:d,p=S.b[i],el=document.createElement('div');
+    el.className='sq '+(((i>>3)+(i&7))%2?'d':'l');
+    if(last&&(i==last.f||i==last.t))el.classList.add('lm');
+    if(i==sel)el.classList.add('sel');
+    if(inC&&p==S.t+'K')el.classList.add('chk');
+    if(tg.some(m=>m.t==i)){el.classList.add('mv');if(p||tg.find(m=>m.t==i).ep)el.classList.add('cap')}
+    if(p)el.innerHTML='<span class="p '+p[0]+'">'+SY[p[1]]+'</span>';
+    el.onclick=()=>tap(i);bd.appendChild(el)}
+  const bc=F?'b':'w',tc=bc=='w'?'b':'w';
+  for(const[id,c]of[['#pT',tc],['#pB',bc]]){const e=$(id);e.dataset.c=c;
+    e.querySelector('.nm').textContent=opt.vs=='ai'?(c==human?'Bạn':'Máy · '+LV[opt.lv]):NM[c];
+    e.classList.toggle('rot',opt.vs=='2p'&&id=='#pT');
+    e.classList.toggle('act',!over&&(blitz?run==c:S.t==c));
+    e.classList.toggle('pend',pending()&&run==c&&(opt.vs=='2p'||c==human));
+    e.onclick=()=>press(c)}
+  clocks();
+  $('#st').textContent=over?'':busy?'Máy đang nghĩ…':pending()?'':inC?'Chiếu! Lượt '+NM[S.t]:'Lượt '+NM[S.t];
+  if(blitz&&!over&&run!=S.t&&run!=undefined&&(opt.vs=='2p'||run==human))$('#st').textContent='Bấm đồng hồ của bạn để đổi lượt'}
+function clocks(){for(const id of['#pT','#pB']){const e=$(id),c=e.dataset.c,k=e.querySelector('.ck');
+  if(!blitz){k.textContent='';continue}
+  const ms=Math.max(0,clk[c]),s=Math.ceil(ms/1000);
+  k.textContent=ms<10000?(ms/1000).toFixed(1):Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+  k.classList.toggle('low',ms<10000)}}
+
+function tap(i){if(over||busy)return;if(opt.vs=='ai'&&S.t!=human)return;if(blitz&&run!=S.t)return;
+  const m=sel!=null&&lm.find(x=>x.f==sel&&x.t==i);
+  if(m)return doMove(m);
+  sel=S.b[i]&&S.b[i][0]==S.t&&i!=sel?i:null;render()}
+function doMove(m){hist.push({S,last});S=mk(S,m);last=m;sel=null;
+  const L=legal(S);
+  if(!L.length){over=true;render();
+    const w=NM[S.t=='w'?'b':'w'];
+    return finish(chk(S.b,S.t)?'Chiếu hết! '+(opt.vs=='ai'?(S.t==human?'Máy thắng':'Bạn thắng 🎉'):w+' thắng'):'Hòa — hết nước đi')}
+  if(blitz){if(opt.vs=='ai'&&run!=human){run=S.t;lt=performance.now()}}
+  render();
+  if(opt.vs=='ai'&&S.t!=human&&(!blitz||run==S.t))aiMove()}
+function press(c){if(!pending()||run!=c)return;if(opt.vs=='ai'&&c!=human)return;
+  tick();run=S.t;lt=performance.now();render();
+  if(opt.vs=='ai'&&S.t!=human)aiMove()}
+function aiMove(){busy=true;render();const snap=S;
+  setTimeout(()=>{if(over||S!==snap)return;const m=pick(S,opt.lv);busy=false;doMove(m)},350)}
+function finish(t){$('#ovT').textContent=t;$('#ov').classList.add('on')}
+function tick(){const n=performance.now();if(!over&&blitz&&S){clk[run]-=n-lt;
+  if(clk[run]<=0){clk[run]=0;over=true;render();finish('Hết giờ! '+(opt.vs=='ai'?(run==human?'Máy thắng':'Bạn thắng 🎉'):NM[run=='w'?'b':'w']+' thắng'))}}
+  lt=n}
+setInterval(()=>{if(!over&&blitz&&S&&$('#game').classList.contains('on')){tick();clocks()}},100);
+
+/* ===== NHẠC NỀN (tự tạo bằng WebAudio) ===== */
+let ac,tm,st=0,mus=localStorage.getItem('mus')!=='0';
+const CH=[[0,4,7,11],[-3,0,4,7],[-7,-3,0,4],[-5,-1,2,7]],PT=[0,1,2,3,2,1,3,2];
+function note(n,len,g){const o=ac.createOscillator(),a=ac.createGain(),t=ac.currentTime;
+  o.type='sine';o.frequency.value=261.63*2**(n/12);a.gain.setValueAtTime(0,t);a.gain.linearRampToValueAtTime(g,t+.04);a.gain.exponentialRampToValueAtTime(.0005,t+len);
+  o.connect(a).connect(ac.destination);o.start(t);o.stop(t+len)}
+function startMusic(){if(!mus)return;ac=ac||new(window.AudioContext||window.webkitAudioContext)();ac.resume();if(tm)return;
+  tm=setInterval(()=>{const ch=CH[(st>>3)%4];if(st%8==0)note(ch[0]-12,3.2,.07);note(ch[PT[st%8]]+(st%16>7?12:0),1.8,.05);st++},480)}
+function setMu(){$('#mu').classList.toggle('off',!mus);$('#mu').textContent=mus?'🎵':'🔇'}
+$('#mu').onclick=()=>{mus=!mus;localStorage.setItem('mus',mus?'1':'0');setMu();
+  if(mus)startMusic();else{clearInterval(tm);tm=0;ac&&ac.suspend()}};
+document.addEventListener('visibilitychange',()=>{if(!ac)return;document.hidden?ac.suspend():mus&&ac.resume()});
+setMu();sync();
+
+/* ===== ICON APP (apple-touch-icon vẽ bằng canvas) ===== */
+(()=>{const c=document.createElement('canvas');c.width=c.height=180;const x=c.getContext('2d'),g=x.createLinearGradient(0,0,180,180);
+  g.addColorStop(0,'#5b7a99');g.addColorStop(1,'#121826');x.fillStyle=g;x.fillRect(0,0,180,180);
+  x.fillStyle='#f2c14e';x.fillRect(0,150,180,30);x.fillStyle='#fff';x.font='130px "Apple Symbols","Segoe UI Symbol",serif';x.textAlign='center';x.fillText('♞\uFE0E',90,138);
+  $('#ati').href=c.toDataURL('image/png')})();
+</script>
+</body>
+</html>
