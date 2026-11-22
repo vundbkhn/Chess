@@ -98,7 +98,7 @@ h1{margin:0;font-size:clamp(36px,9vw,58px);font-weight:800;letter-spacing:-.02em
 <div id="fr"><div id="bd"></div></div>
 <div class="pan" id="pB"><span class="nm"></span><span class="ck"></span></div>
 <div id="st"></div>
-<div class="bar"><button id="bU">↶ Đi lại</button><button id="bN">Ván mới</button><button id="bM">Menu</button></div>
+<div class="bar"><button id="bB">◀ Lùi</button><button id="bF">Tiến ▶</button><button id="bN">Ván mới</button><button id="bM">Menu</button></div>
 </section>
 <div class="sheet" id="sh"><div class="in"><h3 id="shT"></h3>
 <div class="g" id="gLv"><label>Cấp độ máy</label><div class="seg" data-k="lv"><b data-v="0">🌱 Siêu dễ</b><b data-v="1">🙂 Dễ</b><b data-v="2" class="on">🧠 Vừa</b><b data-v="3">🔥 Khó</b></div></div>
@@ -110,7 +110,7 @@ h1{margin:0;font-size:clamp(36px,9vw,58px);font-weight:800;letter-spacing:-.02em
 <button class="q" data-q="mid"><span>✨</span><div><b>Bình thường</b><small>Đồ họa nâng cấp, cân bằng mượt và pin</small></div></button>
 <button class="q" data-q="lo"><span>🔋</span><div><b>Dành cho máy yếu</b><small>Giảm chi tiết, tắt hiệu ứng, 60Hz, tiết kiệm pin</small></div></button>
 </div></div>
-<div id="ov"><div id="cf"></div><div id="pp"><div class="em" id="ovE"></div><h2 id="ovT"></h2><p id="ovS"></p><button class="pri" id="ovN">Chơi lại</button><button id="ovM">Về menu</button></div></div>
+<div id="ov"><div id="cf"></div><div id="pp"><div class="em" id="ovE"></div><h2 id="ovT"></h2><p id="ovS"></p><button class="pri" id="ovN">Chơi lại</button><button id="ovB">Xem lại nước đi</button><button id="ovM">Về menu</button></div></div>
 <script>
 const $=s=>document.querySelector(s);
 const V={P:100,N:320,B:330,R:500,Q:900,K:0};
@@ -170,7 +170,7 @@ function pick(S,lv){const L=legal(S);
 
 /* ===== TRẠNG THÁI & GIAO DIỆN ===== */
 const opt={kind:'normal',vs:'ai',lv:2,col:'w',tm:180000};
-let S,hist=[],sel=null,last=null,over=true,busy=false,clk={w:0,b:0},run='w',lt=0,human='w',blitz=false,lm=[];
+let S,hist=[],fut=[],sel=null,last=null,over=true,busy=false,clk={w:0,b:0},run='w',lt=0,human='w',blitz=false,lm=[];
 const flip=()=>opt.vs=='ai'&&human=='b';
 const u=(c,k,x,y,s)=>`<use class="${c}" href="#${k}" x="${x}" y="${y}" width="${s}" height="${s}"/>`;
 const ro=(x,y)=>`<g transform="translate(${x},${y})"><path d="M26 0v8" stroke="#8ff3e0" stroke-width="4"/><circle cx="26" cy="-3" r="4" fill="#f2c14e"/><rect y="8" width="52" height="42" rx="13" fill="#8ff3e0"/><circle cx="17" cy="26" r="6" fill="#0e1424"/><circle cx="35" cy="26" r="6" fill="#0e1424"/><rect x="17" y="38" width="18" height="4" rx="2" fill="#0e1424"/></g>`;
@@ -188,13 +188,20 @@ document.querySelectorAll('.sheet').forEach(s=>s.onclick=e=>{if(e.target==s)s.cl
 const show=id=>document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('on',s.id==id));
 function start(){startMusic();$('#sh').classList.remove('on');show('game');newGame()}
 $('#go').onclick=start;
-function newGame(){S=init();hist=[];sel=null;last=null;over=false;busy=false;blitz=opt.kind=='blitz';human=opt.col;
+function newGame(){S=init();hist=[];fut=[];sel=null;last=null;over=false;busy=false;blitz=opt.kind=='blitz';human=opt.col;
   clk={w:opt.tm,b:opt.tm};run='w';lt=performance.now();$('#ov').classList.remove('on');$('#cf').innerHTML='';
-  $('#bU').disabled=blitz;render();if(opt.vs=='ai'&&human=='b')aiMove()}
+  render();if(opt.vs=='ai'&&human=='b')aiMove()}
 $('#bN').onclick=$('#ovN').onclick=newGame;
 $('#bM').onclick=$('#ovM').onclick=()=>{over=true;busy=false;$('#ov').classList.remove('on');$('#cf').innerHTML='';show('menu')};
-$('#bU').onclick=()=>{if(busy||!hist.length)return;let h=hist.pop();if(opt.vs=='ai'&&h.S.t!=human&&hist.length)h=hist.pop();
-  S=h.S;last=h.last;sel=null;over=false;$('#ov').classList.remove('on');render();if(opt.vs=='ai'&&S.t!=human)aiMove()};
+/* ===== LÙI / TIẾN (tối đa 10 bước gần nhất) ===== */
+const canB=()=>opt.vs=='ai'?hist.length>=2&&hist[hist.length-2].S.t==human:hist.length>0;
+const canF=()=>opt.vs=='ai'?fut.length>=2:fut.length>0;
+function navUp(){$('#bB').disabled=busy||!canB();$('#bF').disabled=busy||!canF()}
+function nav(){sel=null;over=!legal(S).length;$('#ov').classList.remove('on');$('#cf').innerHTML='';
+  if(blitz){run=S.t;lt=performance.now()}render();if(!over&&opt.vs=='ai'&&S.t!=human)aiMove()}
+function back(){if(busy||!canB())return;do{fut.push({S,last});const h=hist.pop();S=h.S;last=h.last}while(opt.vs=='ai'&&S.t!=human);nav()}
+function fwd(){if(busy||!canF())return;do{hist.push({S,last});const f=fut.pop();S=f.S;last=f.last}while(opt.vs=='ai'&&S.t!=human&&fut.length);nav()}
+$('#bB').onclick=back;$('#bF').onclick=fwd;$('#ovB').onclick=()=>$('#ov').classList.remove('on');
 
 /* ===== ĐỒ HỌA ===== */
 function setQ(q){Q=q;localStorage.setItem('q',q);document.body.className='q-'+q;
@@ -220,7 +227,7 @@ function render(anim){lm=legal(S);const inC=chk(S.b,S.t),F=flip(),bd=$('#bd'),tg
     e.classList.toggle('act',!over&&(blitz?run==c:S.t==c));
     e.classList.toggle('pend',pending()&&run==c&&(opt.vs=='2p'||c==human));
     e.onclick=()=>press(c)}
-  clocks();
+  clocks();navUp();
   $('#st').textContent=over?'':busy?'Máy đang nghĩ…':pending()&&(opt.vs=='2p'||run==human)?'Bấm đồng hồ của bạn để đổi lượt':inC?'Chiếu! Lượt '+NM[S.t]:'Lượt '+NM[S.t]}
 $('#bd').onclick=e=>{const q=e.target.closest('.sq');if(q)tap(+q.dataset.i)};
 function clocks(){for(const id of['#pT','#pB']){const e=$(id),c=e.dataset.c,k=e.querySelector('.ck');let t='';
@@ -235,7 +242,7 @@ function end(w,why){over=true;render();
   if(!w)return finish('draw','Hai bên ngang tài ngang sức');
   if(opt.vs=='ai')return w==human?finish('win',why+'Bạn đã thắng máy cấp độ '+LV[opt.lv]):finish('lose',why+'Thử lại nhé, bạn sẽ làm được!');
   finish('win',why+NM[w]+' thắng')}
-function doMove(m){hist.push({S,last});const mover=S.t;S=mk(S,m);last=m;sel=null;
+function doMove(m){hist.push({S,last});fut=[];if(hist.length>(opt.vs=='ai'?20:10))hist.shift();const mover=S.t;S=mk(S,m);last=m;sel=null;
   if(!legal(S).length)return end(chk(S.b,S.t)?mover:null,'Chiếu hết! ');
   if(blitz&&opt.vs=='ai'&&run!=human){run=S.t;lt=performance.now()}
   render(true);if(opt.vs=='ai'&&S.t!=human&&(!blitz||run==S.t))aiMove()}
