@@ -80,6 +80,13 @@ h1{margin:0;font-size:clamp(36px,9vw,58px);font-weight:800;letter-spacing:-.02em
 @keyframes fall{to{transform:translateY(105vh) rotate(720deg)}}
 .q-lo .em{animation:none}
 @media(prefers-reduced-motion:reduce){.em,#cf span{animation:none}}
+#c3{display:none;width:100%;aspect-ratio:1;border-radius:8px;touch-action:none}
+.g3 #c3{display:block}.g3 #bd{display:none}.g3 #fr{background:none;box-shadow:none;padding:0}
+#gear.nu::after{content:"";position:absolute;top:6px;right:6px;width:10px;height:10px;border-radius:50%;background:#e5484d}
+#ub{position:fixed;top:calc(env(safe-area-inset-top) + 64px);left:50%;transform:translateX(-50%);z-index:7;background:var(--gold);color:#1a1405;padding:10px 14px;border-radius:14px;font-weight:700;display:flex;gap:10px;align-items:center;box-shadow:0 6px 20px #0008;white-space:nowrap}
+#ub[hidden]{display:none}#ub button{background:#1a1405;color:var(--gold);padding:7px 12px;border-radius:10px;font-weight:700}
+.hn{font-size:12px;color:var(--mut);line-height:1.4}.hn[hidden]{display:none}
+.qt{display:flex;gap:14px;align-items:center;padding:10px 14px;border-radius:16px;background:var(--bg);border:2px solid transparent;text-align:left;width:100%}.qt.on{border-color:var(--gold)}.qt span{font-size:26px}.qt b{display:block}.qt small{color:var(--mut)}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <linearGradient id="gw" gradientUnits="userSpaceOnUse" x1="20" y1="10" x2="85" y2="90"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#a9b5cc"/></linearGradient>
@@ -102,14 +109,26 @@ h1{margin:0;font-size:clamp(36px,9vw,58px);font-weight:800;letter-spacing:-.02em
 </section>
 <div class="sheet" id="sh"><div class="in"><h3 id="shT"></h3>
 <div class="g" id="gLv"><label>Cấp độ máy</label><div class="seg" data-k="lv"><b data-v="0">🌱 Siêu dễ</b><b data-v="1">🙂 Dễ</b><b data-v="2" class="on">🧠 Vừa</b><b data-v="3">🔥 Khó</b></div></div>
+<small class="hn" id="hn">🌱 Siêu dễ (cờ thường): bạn luôn thắng được, nhưng máy chơi chặt trong 40 nước đầu (tính cả hai bên): chặn và ăn tốt để bạn chưa phong cấp trước nước 30, và chống bị chiếu hết trước nước 40.</small>
 <div class="g" id="gCol"><label>Bạn cầm quân</label><div class="seg" data-k="col"><b data-v="w" class="on">♔ Trắng</b><b data-v="b">♚ Đen</b></div></div>
 <div class="g" id="gTm"><label>Thời gian mỗi bên</label><div class="seg" data-k="tm"><b data-v="60000">1 phút</b><b data-v="180000" class="on">3 phút</b><b data-v="300000">5 phút</b><b data-v="600000">10 phút</b></div></div>
 <button class="go" id="go">Bắt đầu chơi</button></div></div>
-<div class="sheet" id="se"><div class="in"><h3>Cài đặt đồ họa</h3>
-<button class="q" data-q="hi"><span>💎</span><div><b>Siêu sắc nét 4K</b><small>Vector độ nét tối đa, bóng đổ, hiệu ứng mượt 120Hz</small></div></button>
-<button class="q" data-q="mid"><span>✨</span><div><b>Bình thường</b><small>Đồ họa nâng cấp, cân bằng mượt và pin</small></div></button>
-<button class="q" data-q="lo"><span>🔋</span><div><b>Dành cho máy yếu</b><small>Giảm chi tiết, tắt hiệu ứng, 60Hz, tiết kiệm pin</small></div></button>
+<div class="sheet" id="se"><div class="in"><h3>Cài đặt</h3>
+<button class="q" data-q="hi"><span>💎</span><div><b>3D siêu nét</b><small>Bàn cờ & quân 3D, độ phân giải tối đa, hiệu ứng nhấc/thả quân</small></div></button>
+<button class="q" data-q="mid"><span>✨</span><div><b>3D cân bằng</b><small>Đồ họa 3D, cân bằng giữa mượt và pin</small></div></button>
+<button class="q" data-q="lo"><span>🔋</span><div><b>2D tiết kiệm pin</b><small>Đồ họa phẳng, tắt hiệu ứng, dành cho máy yếu</small></div></button>
+<div class="g"><label>Cập nhật · phiên bản <b id="vr"></b></label><div class="seg" data-k="au"><b data-v="1">Tự động kiểm tra: Bật</b><b data-v="0">Tắt</b></div>
+<button class="go" id="uc" style="font-size:16px;padding:13px">Kiểm tra cập nhật</button><small class="hn" id="us"></small></div>
 </div></div>
+<div class="sheet" id="sd"><div class="in"><h3>Âm thanh</h3>
+<div class="g"><label>Nhạc nền</label><div class="seg" data-k="mu"><b data-v="1">Bật</b><b data-v="0">Tắt</b></div></div>
+<button class="qt" data-t="0"><span>🎹</span><div><b>Mặc định</b><small>Giai điệu piano cổ điển</small></div></button>
+<button class="qt" data-t="1"><span>🌿</span><div><b>Nhẹ nhàng</b><small>Chậm rãi, êm dịu</small></div></button>
+<button class="qt" data-t="2"><span>🎈</span><div><b>Vui vẻ</b><small>Nhịp nhanh, tươi sáng</small></div></button>
+<button class="qt" data-t="3"><span>🌙</span><div><b>Thư giãn</b><small>Âm vang dài, thả lỏng</small></div></button>
+<div class="g"><label>Cảnh báo khi bị chiếu (giọng tiếng Việt)</label><div class="seg" data-k="sn"><b data-v="1">Bật</b><b data-v="0">Tắt</b></div></div>
+<button class="go" id="tw" style="font-size:16px;padding:13px">🔔 Nghe thử cảnh báo</button></div></div>
+<div id="ub" hidden><span id="ubt"></span><button id="ubb">Cập nhật</button></div>
 <div id="ov"><div id="cf"></div><div id="pp"><div class="em" id="ovE"></div><h2 id="ovT"></h2><p id="ovS"></p><button class="pri" id="ovN">Chơi lại</button><button id="ovB">Xem lại nước đi</button><button id="ovM">Về menu</button></div></div>
 <script>
 const $=s=>document.querySelector(s);
@@ -119,7 +138,7 @@ const D={B:DG,R:OR,Q:[...DG,...OR],K:[...DG,...OR],N:[[1,2],[2,1],[-1,2],[-2,1],
 const LV=['Siêu dễ','Dễ','Vừa','Khó'],NM={w:'Trắng',b:'Đen'};
 let Q=localStorage.getItem('q')||((navigator.hardwareConcurrency||8)<=4?'lo':'mid');
 /* ===== LUẬT CỜ ===== */
-function init(){const b=[];'rnbqkbnr'.split('').forEach((x,i)=>{b[i]='b'+x.toUpperCase();b[8+i]='bP';b[48+i]='wP';b[56+i]='w'+x.toUpperCase()});for(let i=16;i<48;i++)b[i]=null;return{b,t:'w',c:'KQkq',e:-1}}
+function init(){const b=[];'rnbqkbnr'.split('').forEach((x,i)=>{b[i]='b'+x.toUpperCase();b[8+i]='bP';b[48+i]='wP';b[56+i]='w'+x.toUpperCase()});for(let i=16;i<48;i++)b[i]=null;return{b,t:'w',c:'KQkq',e:-1,n:0}}
 const ok=(r,c)=>r>=0&&r<8&&c>=0&&c<8;
 function att(b,s,by){const r=s>>3,c=s&7,pr=r+(by=='w'?1:-1);
   if(pr>=0&&pr<8)for(const dc of[-1,1])if(ok(pr,c+dc)&&b[pr*8+c+dc]==by+'P')return 1;
@@ -148,7 +167,7 @@ function mk(S,m){const b=S.b.slice(),p=b[m.f],t=S.t;let c=S.c,e=-1;
   if(m.d)e=(m.f+m.t)/2;
   if(p[1]=='K')c=c.replace(t=='w'?/[KQ]/g:/[kq]/g,'');
   for(const[s,x]of[[0,'q'],[7,'k'],[56,'Q'],[63,'K']])if(m.f==s||m.t==s)c=c.replace(x,'');
-  return{b,t:t=='w'?'b':'w',c,e}}
+  return{b,t:t=='w'?'b':'w',c,e,n:S.n+1}}
 const legal=S=>gen(S).filter(m=>!chk(mk(S,m).b,S.t));
 
 /* ===== MÁY ===== */
@@ -161,7 +180,7 @@ function ab(S,d,a,b,ply){
   if(!d){if(chk(S.b,S.t)&&!legal(S).length)return-99999+ply;return ev(S)}
   const L=order(legal(S),S);if(!L.length)return chk(S.b,S.t)?-99999+ply:0;
   for(const m of L){const v=-ab(mk(S,m),d-1,-b,-a,ply+1);if(v>=b)return b;if(v>a)a=v}return a}
-function pick(S,lv){const L=legal(S);
+function pick(S,lv){if(lv==0&&opt.kind=='normal'&&opt.vs=='ai')return rig(S);const L=legal(S);
   if(lv==0){let best=L[0],bs=-1e9;for(const m of L){const n=mk(S,m);if(chk(n.b,n.t)&&!legal(n).length)continue;const v=ev(n)+Math.random()*40;if(v>bs){bs=v;best=m}}return best}
   if(lv==1&&Math.random()<.5)return L[Math.random()*L.length|0];
   const d=lv==1?1:lv==2?2:(Q=='lo'?2:3);let best=L[0],bs=-1e9;
@@ -170,7 +189,7 @@ function pick(S,lv){const L=legal(S);
 
 /* ===== TRẠNG THÁI & GIAO DIỆN ===== */
 const opt={kind:'normal',vs:'ai',lv:2,col:'w',tm:180000};
-let S,hist=[],fut=[],sel=null,last=null,over=true,busy=false,clk={w:0,b:0},run='w',lt=0,human='w',blitz=false,lm=[];
+let tn='',S,hist=[],fut=[],sel=null,last=null,over=true,busy=false,clk={w:0,b:0},run='w',lt=0,human='w',blitz=false,lm=[];
 const flip=()=>opt.vs=='ai'&&human=='b';
 const u=(c,k,x,y,s)=>`<use class="${c}" href="#${k}" x="${x}" y="${y}" width="${s}" height="${s}"/>`;
 const ro=(x,y)=>`<g transform="translate(${x},${y})"><path d="M26 0v8" stroke="#8ff3e0" stroke-width="4"/><circle cx="26" cy="-3" r="4" fill="#f2c14e"/><rect y="8" width="52" height="42" rx="13" fill="#8ff3e0"/><circle cx="17" cy="26" r="6" fill="#0e1424"/><circle cx="35" cy="26" r="6" fill="#0e1424"/><rect x="17" y="38" width="18" height="4" rx="2" fill="#0e1424"/></g>`;
@@ -182,7 +201,7 @@ const CARDS=[['c1','normal','2p','Cờ thường','2 người chơi',u('w','K',6
 $('#cards').innerHTML=CARDS.map((c,i)=>`<button class="cd ${c[0]}" data-i="${i}"><svg viewBox="0 0 160 110">${c[5]}</svg><b>${c[3]}</b><small>${c[4]}</small></button>`).join('');
 $('#cards').onclick=e=>{const b=e.target.closest('.cd');if(!b)return;const c=CARDS[+b.dataset.i];opt.kind=c[1];opt.vs=c[2];
   if(c[1]=='normal'&&c[2]=='2p')return start();
-  $('#shT').textContent=c[3]+' · '+c[4];$('#gLv').hidden=$('#gCol').hidden=c[2]!='ai';$('#gTm').hidden=c[1]!='blitz';$('#sh').classList.add('on')};
+  $('#shT').textContent=c[3]+' · '+c[4];$('#gLv').hidden=$('#gCol').hidden=c[2]!='ai';$('#hn').hidden=!(c[2]=='ai'&&c[1]=='normal');$('#gTm').hidden=c[1]!='blitz';$('#sh').classList.add('on')};
 document.querySelectorAll('.seg b').forEach(b=>b.onclick=()=>{const g=b.parentNode;g.querySelectorAll('b').forEach(x=>x.classList.toggle('on',x==b));const v=b.dataset.v;opt[g.dataset.k]=/^\d+$/.test(v)?+v:v});
 document.querySelectorAll('.sheet').forEach(s=>s.onclick=e=>{if(e.target==s)s.classList.remove('on')});
 const show=id=>document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('on',s.id==id));
@@ -203,8 +222,93 @@ function back(){if(busy||!canB())return;do{fut.push({S,last});const h=hist.pop()
 function fwd(){if(busy||!canF())return;do{hist.push({S,last});const f=fut.pop();S=f.S;last=f.last}while(opt.vs=='ai'&&S.t!=human&&fut.length);nav()}
 $('#bB').onclick=back;$('#bF').onclick=fwd;$('#ovB').onclick=()=>$('#ov').classList.remove('on');
 
+/* ===== 3D (WebGL tự viết, chạy offline, không cần thư viện) ===== */
+const G3={on:false,a:{tg:[],inC:false}};
+(()=>{const cv=document.createElement('canvas');cv.id='c3';$('#fr').appendChild(cv);let gl,la={},lu={},M={},an=null,raf=0,VP;
+const mul=(a,b)=>{const o=new Float32Array(16);for(let i=0;i<4;i++)for(let j=0;j<4;j++){let s=0;for(let k=0;k<4;k++)s+=a[k*4+j]*b[i*4+k];o[i*4+j]=s}return o};
+const persp=(f,n,F)=>{const t=1/Math.tan(f/2);return new Float32Array([t,0,0,0,0,t,0,0,0,0,(F+n)/(n-F),-1,0,0,2*F*n/(n-F),0])};
+const look=(e,c)=>{let z=[e[0]-c[0],e[1]-c[1],e[2]-c[2]],l=Math.hypot(...z);z=z.map(v=>v/l);let x=[z[2],0,-z[0]];l=Math.hypot(...x);x=x.map(v=>v/l);
+  const y=[z[1]*x[2],z[2]*x[0]-z[0]*x[2],-z[1]*x[0]],d=(a)=>-(a[0]*e[0]+a[1]*e[1]+a[2]*e[2]);
+  return new Float32Array([x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,d(x),d(y),d(z),1])};
+const mesh=a=>{const b=gl.createBuffer();gl.bindBuffer(34962,b);gl.bufferData(34962,new Float32Array(a),35044);return{b,n:a.length/6}};
+const lathe=(pf,k=28)=>{const a=[];for(let i=0;i<pf.length-1;i++){const[r0,y0]=pf[i],[r1,y1]=pf[i+1],l=Math.hypot(y1-y0,r1-r0)||1,nr=(y1-y0)/l,ny=-(r1-r0)/l;
+  for(let j=0;j<k;j++){const t0=j/k*6.2832,t1=(j+1)/k*6.2832,v=(r,y,t)=>[r*Math.cos(t),y,r*Math.sin(t),nr*Math.cos(t),ny,nr*Math.sin(t)];
+    a.push(...v(r0,y0,t0),...v(r1,y1,t0),...v(r1,y1,t1),...v(r0,y0,t0),...v(r1,y1,t1),...v(r0,y0,t1))}}return a};
+const box=(cx,cy,cz,sx,sy,sz,rx=0)=>{const a=[],c=Math.cos(rx),s=Math.sin(rx);
+  for(let ax=0;ax<3;ax++)for(const sg of[-1,1]){const u=(ax+1)%3,w=(ax+2)%3,n=[0,0,0];n[ax]=sg;
+    const V=(du,dw)=>{const q=[0,0,0];q[ax]=sg*.5;q[u]=du*.5;q[w]=dw*.5;const x=q[0]*sx,y=q[1]*sy,z=q[2]*sz;
+      return[x+cx,y*c-z*s+cy,y*s+z*c+cz,n[0],n[1]*c-n[2]*s,n[1]*s+n[2]*c]};
+    for(const[p,q]of[[-1,-1],[1,-1],[1,1],[-1,-1],[1,1],[-1,1]])a.push(...V(p,q))}return a};
+const PF={P:[[0,0],[.3,0],[.3,.07],[.2,.14],[.12,.34],[.19,.38],[.19,.44],[.13,.47],[.2,.58],[.17,.68],[.09,.75],[0,.77]],
+R:[[0,0],[.34,0],[.34,.08],[.25,.15],[.2,.5],[.29,.58],[.31,.64],[.31,.82],[.22,.82],[.22,.75],[0,.75]],
+B:[[0,0],[.33,0],[.33,.08],[.21,.14],[.12,.42],[.21,.48],[.22,.6],[.13,.84],[.07,.9],[.11,.95],[.07,1.02],[0,1.06]],
+Q:[[0,0],[.35,0],[.35,.08],[.23,.15],[.13,.52],[.21,.62],[.31,.86],[.25,.94],[.13,.9],[.1,.97],[.15,1.03],[0,1.08]],
+K:[[0,0],[.35,0],[.35,.08],[.23,.15],[.14,.55],[.24,.66],[.28,.88],[.18,.95],[.1,.98],[0,1.0]]};
+function init(){if(gl)return 1;try{gl=cv.getContext('webgl',{antialias:true,alpha:true,premultipliedAlpha:false});if(!gl)return 0;
+  const sh=(t,s)=>{const x=gl.createShader(t);gl.shaderSource(x,s);gl.compileShader(x);if(!gl.getShaderParameter(x,35713))throw 1;return x},p=gl.createProgram();
+  gl.attachShader(p,sh(35633,'attribute vec3 p,n;uniform mat4 V;uniform vec3 T,S;uniform float R;varying vec3 N,W;void main(){vec3 q=p*S;float c=cos(R),s=sin(R);q=vec3(c*q.x+s*q.z,q.y,-s*q.x+c*q.z);N=vec3(c*n.x+s*n.z,n.y,-s*n.x+c*n.z);W=q+T;gl_Position=V*vec4(W,1.);}'));
+  gl.attachShader(p,sh(35632,'precision mediump float;uniform vec4 C;uniform vec3 E;uniform float U;varying vec3 N,W;void main(){if(U>.5){gl_FragColor=C;return;}vec3 n=normalize(N),l=normalize(vec3(-.4,1.,.5)),v=normalize(E-W),h=normalize(l+v);float d=max(dot(n,l),0.);float sp=pow(max(dot(n,h),0.),40.)*.4;float rm=pow(1.-max(dot(n,v),0.),3.)*.12;gl_FragColor=vec4(C.rgb*(.4+.72*d+.2*max(dot(n,vec3(.5,.2,-.6)),0.))+sp+rm,1.);}'));
+  gl.linkProgram(p);if(!gl.getProgramParameter(p,35714))throw 1;gl.useProgram(p);
+  for(const k of['p','n']){la[k]=gl.getAttribLocation(p,k);gl.enableVertexAttribArray(la[k])}
+  for(const k of['V','T','S','R','C','E','U'])lu[k]=gl.getUniformLocation(p,k);
+  for(const k in PF)M[k]=lathe(PF[k]);
+  M.K=mesh([...M.K,...box(0,1.12,0,.09,.34,.09),...box(0,1.18,0,.28,.08,.09)]);
+  for(const k of'PRBQ')M[k]=mesh(M[k]);
+  M.N=mesh([...lathe([[0,0],[.34,0],[.34,.08],[.23,.15],[.2,.3],[0,.3]]),...box(0,.5,.02,.3,.5,.34),...box(0,.8,-.1,.26,.3,.5,-.45),...box(0,.74,-.38,.2,.2,.3,.3),...box(-.08,1.0,.0,.07,.16,.07),...box(.08,1.0,.0,.07,.16,.07)]);
+  M.bx=mesh(box(0,.5,0,1,1,1));M.dk=mesh(lathe([[0,0],[1,0]],24));M.rg=mesh(lathe([[.8,0],[1,0]],24));
+  gl.enable(2929);gl.blendFuncSeparate(770,771,1,1);return 1}catch(e){gl=null;return 0}}
+const dr=(m,t,s,r,c,u)=>{gl.bindBuffer(34962,m.b);gl.vertexAttribPointer(la.p,3,5126,0,24,0);gl.vertexAttribPointer(la.n,3,5126,0,24,12);
+  gl.uniform3fv(lu.T,t);gl.uniform3fv(lu.S,s);gl.uniform1f(lu.R,r);gl.uniform4fv(lu.C,c);gl.uniform1f(lu.U,u?1:0);gl.drawArrays(4,0,m.n)};
+const pos=i=>[(i&7)-3.5,0,(i>>3)-3.5];
+function frame(){raf=0;if(!G3.on||!S||!gl)return;const w=cv.clientWidth;if(!w)return;const k=flip()?-1:1,px=Math.round(w*Math.min(devicePixelRatio||1,Q=='hi'?3:1.5));
+  if(cv.width!=px)cv.width=cv.height=px;gl.viewport(0,0,px,px);gl.clearColor(0,0,0,0);gl.clear(16640);
+  const e=[0,11,8.6*k];VP=mul(persp(.84,1,60),look(e,[0,0,-.3*k]));gl.uniformMatrix4fv(lu.V,0,VP);gl.uniform3fv(lu.E,e);
+  const B=M.bx,Z=[0,0,0],O=[1,1,1];
+  dr(B,[0,-.74,0],[9.4,.5,9.4],0,[.2,.12,.07,1]);
+  for(const[x,z,sx,sz]of[[0,-4.25,9,.5],[0,4.25,9,.5],[-4.25,0,.5,8],[4.25,0,.5,8]])dr(B,[x,-.24,z],[sx,.3,sz],0,[.36,.22,.12,1]);
+  for(let i=0;i<64;i++)dr(B,[pos(i)[0],-.2,pos(i)[2]],[1,.2,1],0,((i>>3)+(i&7))%2?[.5,.33,.2,1]:[.93,.84,.66,1]);
+  gl.enable(3042);gl.depthMask(false);const A=G3.a,H=(i,c,y=.005)=>dr(B,[pos(i)[0],y,pos(i)[2]],[1,.02,1],0,c,1);
+  if(last){H(last.f,[.95,.76,.3,.4]);H(last.t,[.95,.76,.3,.5])}if(sel!=null)H(sel,[.95,.76,.3,.75],.007);
+  if(A.inC){const q=S.b.indexOf(S.t+'K');H(q,[.9,.2,.25,.6],.009)}
+  for(const m of A.tg){const p=pos(m.t);S.b[m.t]||m.ep?dr(M.rg,[p[0],.03,p[2]],[.47,1,.47],0,[.9,.25,.3,.95],1):dr(M.dk,[p[0],.03,p[2]],[.17,1,.17],0,[.08,.1,.2,.5],1)}
+  let t=1;if(an){t=(performance.now()-an.t0)/(Q=='hi'?380:280);if(t>=1){an=null;t=1}}
+  const P=[];for(let i=0;i<64;i++)if(S.b[i]){let p=pos(i),y=0;if(an&&i==an.t){const f=pos(an.f);p=[f[0]+(p[0]-f[0])*t,0,f[2]+(p[2]-f[2])*t];y=Math.sin(Math.PI*t)*.7}P.push([S.b[i],p,y])}
+  for(const[pc,p,y]of P)dr(M.dk,[p[0],.012,p[2]],[.4-y*.15,1,.4-y*.15],0,[0,0,0,.3-y*.2],1);
+  gl.depthMask(true);gl.disable(3042);
+  for(const[pc,p,y]of P)dr(M[pc[1]],[p[0],y,p[2]],O,pc[1]=='N'&&pc[0]=='b'?Math.PI:0,pc[0]=='w'?[.96,.93,.86,1]:[.17,.18,.25,1]);
+  if(an)raf=requestAnimationFrame(frame)}
+const sch=()=>raf||(raf=requestAnimationFrame(frame));
+G3.init=init;G3.draw=(tg,inC,mv)=>{if(tg){G3.a={tg,inC}}if(mv&&last)an={f:last.f,t:last.t,t0:performance.now()};sch()};
+cv.onclick=e=>{if(!VP)return;const r=cv.getBoundingClientRect();let bi=0,bd=1e9;
+  for(let i=0;i<64;i++){const p=pos(i),y=S.b[i]?.4:0,c=[0,1,2,3].map(j=>VP[j]*p[0]+VP[4+j]*y+VP[8+j]*p[2]+VP[12+j]),
+    dx=(c[0]/c[3]*.5+.5)*r.width-(e.clientX-r.left),dy=(.5-c[1]/c[3]*.5)*r.height-(e.clientY-r.top),d=dx*dx+dy*dy;if(d<bd){bd=d;bi=i}}tap(bi)};
+addEventListener('resize',()=>G3.on&&sch());
+})();
+/* ===== BOT SIÊU DỄ (cờ thường): người chơi luôn thắng, nhưng không sớm ===== */
+/* Số nước tính tổng cả hai bên (S.n). Trước nước 30: bot chặn/ăn tốt để không phong cấp. Trước nước 40: bot chặn để tránh bị chiếu hết sớm. */
+const rigged=()=>opt.vs=='ai'&&opt.kind=='normal'&&opt.lv==0;
+const ends=P=>legal(P).some(m=>{const Q=mk(P,m),c=chk(Q.b,Q.t);return(c||Q.b.filter(x=>x&&x[0]==Q.t).length<=3)&&!legal(Q).length});
+const promo=P=>legal(P).some(m=>m.p);
+function rig(S){const L=legal(S),h=S.t=='w'?'b':'w',n=S.n,t0=performance.now(),fw=h=='w'?-8:8,
+  mat=c=>S.b.reduce((s,p)=>s+(p&&p[0]==c?V[p[1]]:0),0),lead=mat(S.t)-mat(h);
+  let ok=L.filter(m=>legal(mk(S,m)).length>0);if(!ok.length)ok=L;
+  const pw=[];S.b.forEach((p,i)=>{if(p==h+'P')pw.push([i,h=='w'?6-(i>>3):(i>>3)-1])});
+  const sc=m=>{const N=mk(S,m);let s=Math.random()*20;
+    for(const[i,a]of pw){if(m.t==i+fw)s+=300+a*60;else if(m.t!=i&&att(N.b,i,S.t))s+=50+a*20}   /* chặn > ép tốt */
+    const cv=S.b[m.t]?V[S.b[m.t][1]]:m.ep?100:0;
+    if(cv){if(lead+cv>340)s-=500;else{const a=S.b[m.t]&&S.b[m.t][1]=='P'?(pw.find(x=>x[0]==m.t)||[0,0])[1]:0;s+=(S.b[m.t]&&S.b[m.t][1]=='P'&&n<30?150+a*40:120)}}
+    return s};
+  const R=ok.map(m=>[sc(m),m]).sort((a,b)=>b[0]-a[0]).map(x=>x[1]),n40=n+2<40,n30=n+2<30;
+  const s1=m=>{const N=mk(S,m);return!(n40&&ends(N))&&!(n30&&promo(N))};
+  const s2=m=>{if(n+4>=40)return true;const N=mk(S,m);
+    return legal(N).every(r=>{const Q=mk(N,r),B=legal(Q);return!B.length||B.some(b=>!ends(mk(Q,b)))})};
+  if(!n40&&!n30)return R[0];
+  const A=R.filter(s1);
+  for(const m of A){if(performance.now()-t0>1200)break;if(s2(m))return m}
+  return A[0]||R[0]}
+
 /* ===== ĐỒ HỌA ===== */
-function setQ(q){Q=q;localStorage.setItem('q',q);document.body.className='q-'+q;
+function setQ(q){Q=q;localStorage.setItem('q',q);G3.on=q!='lo'&&!!G3.init();document.body.className='q-'+q+(G3.on?' g3':'');
   document.querySelectorAll('.q').forEach(b=>b.classList.toggle('on',b.dataset.q==q));if(!over&&S)render()}
 document.querySelectorAll('.q').forEach(b=>b.onclick=()=>setQ(b.dataset.q));
 $('#gear').onclick=()=>$('#se').classList.add('on');
@@ -216,8 +320,8 @@ function render(anim){lm=legal(S);const inC=chk(S.b,S.t),F=flip(),bd=$('#bd'),tg
     const t=tg.find(m=>m.t==i);if(t)c+=(p||t.ep)?' mv cap':' mv';
     h+=`<div class="${c}" data-i="${i}">${p?`<svg class="pc ${p[0]}" viewBox="0 0 100 100"><use href="#${p[1]}"/></svg>`:''}`+
       (Q!='lo'?(d>55?`<i class="co fl">${'abcdefgh'[i&7]}</i>`:'')+((d&7)==0?`<i class="co rk">${8-(i>>3)}</i>`:''):'')+'</div>'}
-  bd.innerHTML=h;
-  if(anim&&last&&Q!='lo'&&matchMedia('(prefers-reduced-motion:no-preference)').matches){
+  if(!G3.on)bd.innerHTML=h;else G3.draw(tg,inC,anim);
+  if(!G3.on&&anim&&last&&Q!='lo'&&matchMedia('(prefers-reduced-motion:no-preference)').matches){
     const dp=i=>F?63-i:i,a=dp(last.f),z=dp(last.t),e=bd.children[z].querySelector('.pc');
     if(e)e.animate([{transform:`translate(${((a&7)-(z&7))*106}%,${((a>>3)-(z>>3))*106}%)`},{transform:'none'}],{duration:Q=='hi'?220:150,easing:'cubic-bezier(.2,.8,.2,1)'})}
   const bc=F?'b':'w',tc=bc=='w'?'b':'w';
@@ -228,7 +332,7 @@ function render(anim){lm=legal(S);const inC=chk(S.b,S.t),F=flip(),bd=$('#bd'),tg
     e.classList.toggle('pend',pending()&&run==c&&(opt.vs=='2p'||c==human));
     e.onclick=()=>press(c)}
   clocks();navUp();
-  $('#st').textContent=over?'':busy?'Máy đang nghĩ…':pending()&&(opt.vs=='2p'||run==human)?'Bấm đồng hồ của bạn để đổi lượt':inC?'Chiếu! Lượt '+NM[S.t]:'Lượt '+NM[S.t]}
+  $('#st').textContent=over?'':tn?tn:busy?'Máy đang nghĩ…':pending()&&(opt.vs=='2p'||run==human)?'Bấm đồng hồ của bạn để đổi lượt':inC?'Chiếu! Lượt '+NM[S.t]:'Lượt '+NM[S.t]}
 $('#bd').onclick=e=>{const q=e.target.closest('.sq');if(q)tap(+q.dataset.i)};
 function clocks(){for(const id of['#pT','#pB']){const e=$(id),c=e.dataset.c,k=e.querySelector('.ck');let t='';
   if(blitz){const ms=Math.max(0,clk[c]),s=Math.ceil(ms/1000);t=Math.floor(s/60)+':'+String(s%60).padStart(2,'0');k.classList.toggle('low',ms<10000)}
@@ -238,12 +342,14 @@ function clocks(){for(const id of['#pT','#pB']){const e=$(id),c=e.dataset.c,k=e.
 function tap(i){if(over||busy||(opt.vs=='ai'&&S.t!=human)||(blitz&&run!=S.t))return;
   const m=sel!=null&&lm.find(x=>x.f==sel&&x.t==i);if(m)return doMove(m);
   sel=S.b[i]&&S.b[i][0]==S.t&&i!=sel?i:null;render()}
+function toast(t){tn=t;$('#st').textContent=t;setTimeout(()=>{if(tn==t){tn='';if(!over)render()}},2400)}
 function end(w,why){over=true;render();
   if(!w)return finish('draw','Hai bên ngang tài ngang sức');
   if(opt.vs=='ai')return w==human?finish('win',why+'Bạn đã thắng máy cấp độ '+LV[opt.lv]):finish('lose',why+'Thử lại nhé, bạn sẽ làm được!');
   finish('win',why+NM[w]+' thắng')}
 function doMove(m){hist.push({S,last});fut=[];if(hist.length>(opt.vs=='ai'?20:10))hist.shift();const mover=S.t;S=mk(S,m);last=m;sel=null;
   if(!legal(S).length)return end(chk(S.b,S.t)?mover:null,'Chiếu hết! ');
+  if(chk(S.b,S.t)&&(opt.vs=='2p'||S.t==human))warn();
   if(blitz&&opt.vs=='ai'&&run!=human){run=S.t;lt=performance.now()}
   render(true);if(opt.vs=='ai'&&S.t!=human&&(!blitz||run==S.t))aiMove()}
 function press(c){if(!pending()||run!=c||(opt.vs=='ai'&&c!=human))return;tick();run=S.t;lt=performance.now();render();if(opt.vs=='ai'&&S.t!=human)aiMove()}
@@ -260,24 +366,54 @@ function finish(kind,sub){const m={win:['🏆','Chiến thắng!'],lose:['😢',
   kind=='win'?jingle(JW,130,.9,.12):kind=='lose'?jingle(JL,380,1.4,.1):jingle(JD,160,.6,.1)}
 
 /* ===== NHẠC (WebAudio, không cần mạng) ===== */
-let ac,tmr,st=0,mus=localStorage.getItem('mus')!=='0';
+let ac,tmr,st=0,mus=localStorage.getItem('mus')!=='0',trk=+(localStorage.getItem('trk')||0),snd=localStorage.getItem('snd')!=='0';
 const CH=[[0,4,7,11],[-3,0,4,7],[-7,-3,0,4],[-5,-1,2,7]],PT=[0,1,2,3,2,1,3,2];
-function note(n,len,g){const o=ac.createOscillator(),a=ac.createGain(),t=ac.currentTime;
-  o.type='sine';o.frequency.value=261.63*2**(n/12);a.gain.setValueAtTime(0,t);a.gain.linearRampToValueAtTime(g,t+.04);a.gain.exponentialRampToValueAtTime(.0005,t+len);
+function note(n,len,g,w){const o=ac.createOscillator(),a=ac.createGain(),t=ac.currentTime;
+  o.type=w||'sine';o.frequency.value=261.63*2**(n/12);a.gain.setValueAtTime(0,t);a.gain.linearRampToValueAtTime(g,t+.04);a.gain.exponentialRampToValueAtTime(.0005,t+len);
   o.connect(a).connect(ac.destination);o.start(t);o.stop(t+len)}
-function startMusic(){if(!mus)return;ac=ac||new(window.AudioContext||window.webkitAudioContext)();ac.resume();if(tmr)return;
-  tmr=setInterval(()=>{if(document.hidden)return;const ch=CH[(st>>3)%4];if(st%8==0)note(ch[0]-12,3.2,.07);note(ch[PT[st%8]]+(st%16>7?12:0),1.8,.05);st++},480)}
+const TR=[{ms:480,bar:3,ch:CH,pt:PT,len:1.8,g:.05,bl:3.2,oc:12,w:'sine'},
+{ms:620,bar:3,ch:[[0,4,7,11],[-3,0,4,7],[-8,-5,0,4],[-5,-1,2,5]],pt:[0,-1,2,-1,1,-1,3,-1],len:2.6,g:.045,bl:3.8,oc:0,w:'sine'},
+{ms:240,bar:3,ch:[[0,4,7,12],[-5,-1,2,7],[-3,0,4,9],[-7,-3,0,5]],pt:[0,2,1,3,0,2,3,1],len:.35,g:.05,bl:.5,oc:12,w:'triangle'},
+{ms:900,bar:3,ch:[[2,6,9,13],[-1,2,6,9],[-5,-1,2,6],[-3,1,4,9]],pt:[0,-1,-1,2,-1,-1,1,-1],len:4.5,g:.04,bl:6,oc:0,w:'sine'}];
+function startMusic(){if(!mus)return;ac=ac||new(window.AudioContext||window.webkitAudioContext)();ac.resume();if(tmr)return;const T=TR[trk];
+  tmr=setInterval(()=>{if(document.hidden)return;const ch=T.ch[(st>>T.bar)%T.ch.length],i=T.pt[st%T.pt.length];if(st%(1<<T.bar)==0)note(ch[0]-12,T.bl,T.g*1.4,T.w);if(i>=0)note(ch[i]+(st%16>7?T.oc:0),T.len,T.g,T.w);st++},T.ms)}
+function warn(){if(!snd)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();ac.resume();note(9,.22,.12,'triangle');setTimeout(()=>note(9,.3,.12,'triangle'),180)}catch(e){}
+  try{const sy=speechSynthesis,vs=sy.getVoices();if(vs.length&&!vs.some(v=>/^vi/i.test(v.lang)))return;const u=new SpeechSynthesisUtterance('Chiếu tướng!');u.lang='vi-VN';u.rate=.95;const v=vs.find(v=>/^vi/i.test(v.lang));if(v)u.voice=v;sy.cancel();setTimeout(()=>sy.speak(u),380)}catch(e){}}
 function jingle(ns,dt,len,g){if(!mus)return;startMusic();ns.forEach((n,i)=>setTimeout(()=>note(n,len,g),i*dt))}
 function setMu(){$('#mu').classList.toggle('off',!mus);$('#mu').textContent=mus?'🎵':'🔇'}
-$('#mu').onclick=()=>{mus=!mus;localStorage.setItem('mus',mus?'1':'0');setMu();
-  if(mus)startMusic();else{clearInterval(tmr);tmr=0;ac&&ac.suspend()}};
+function setMus(v){mus=v;localStorage.setItem('mus',v?'1':'0');setMu();if(v)startMusic();else{clearInterval(tmr);tmr=0;ac&&ac.suspend()}}
+function setTrk(i){trk=i;localStorage.setItem('trk',i);st=0;clearInterval(tmr);tmr=0;document.querySelectorAll('.qt').forEach(b=>b.classList.toggle('on',+b.dataset.t==i));startMusic()}
+$('#mu').onclick=()=>$('#sd').classList.add('on');
+document.querySelectorAll('.qt').forEach(b=>{b.classList.toggle('on',+b.dataset.t==trk);b.onclick=()=>{setTrk(+b.dataset.t);if(!mus)setMus(true);setMus(true)}});
+document.querySelectorAll('[data-k=mu] b').forEach(b=>{b.classList.toggle('on',(b.dataset.v=='1')==mus);b.addEventListener('click',()=>setMus(b.dataset.v=='1'))});
+document.querySelectorAll('[data-k=sn] b').forEach(b=>{b.classList.toggle('on',(b.dataset.v=='1')==snd);b.addEventListener('click',()=>{snd=b.dataset.v=='1';localStorage.setItem('snd',snd?'1':'0')})});
+$('#tw').onclick=()=>{const k=snd;snd=true;warn();snd=k};
 document.addEventListener('visibilitychange',()=>{if(!ac)return;document.hidden?ac.suspend():mus&&ac.resume()});
 setMu();setQ(Q);
+
+/* ===== TỰ ĐỘNG KIỂM TRA & CẬP NHẬT ===== */
+const VER='3.0.0';let reg,nv=null,aut=localStorage.getItem('au')!=='0',upd=0;
+const sl=ms=>new Promise(r=>setTimeout(r,ms)),us=t=>$('#us').textContent=t;
+async function cup(man){us('Đang kiểm tra…');
+  try{if(reg)await reg.update().catch(()=>{});const t=await(await fetch('sw.js?'+Date.now(),{cache:'no-store'})).text(),m=t.match(/VER='([^']+)'/);
+    if(m&&m[1]!==VER){nv=m[1];us('Có phiên bản mới v'+nv+' (bạn đang dùng v'+VER+')');$('#uc').textContent='Cập nhật ngay';$('#gear').classList.add('nu');
+      if(!man){$('#ubt').textContent='Có bản mới v'+nv;$('#ub').hidden=false}}
+    else{us('Bạn đang dùng bản mới nhất ✓');$('#uc').textContent='Kiểm tra cập nhật'}}
+  catch(e){us(man?'Không kiểm tra được, hãy kiểm tra kết nối mạng':'')}}
+async function apply(){us('Đang cập nhật…');upd=1;$('#ub').hidden=true;
+  try{if(reg){await reg.update().catch(()=>{});for(let i=0;i<12&&!reg.waiting;i++)await sl(250);if(reg.waiting){reg.waiting.postMessage('skip');await sl(2500)}}}catch(e){}
+  try{for(const k of await caches.keys())await caches.delete(k)}catch(e){}
+  location.reload()}
+$('#uc').onclick=()=>nv?apply():cup(1);$('#ubb').onclick=apply;$('#vr').textContent='v'+VER;
+document.querySelectorAll('[data-k=au] b').forEach(b=>{b.classList.toggle('on',(b.dataset.v=='1')==aut);b.addEventListener('click',()=>{aut=b.dataset.v=='1';localStorage.setItem('au',aut?'1':'0');if(aut)cup(0)})});
+if('serviceWorker'in navigator)navigator.serviceWorker.addEventListener('controllerchange',()=>{if(upd)location.reload()});
+setTimeout(()=>aut&&cup(0),4000);setInterval(()=>aut&&!document.hidden&&cup(0),30*60*1000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&aut)cup(0)});
 
 /* ===== ICON APP + OFFLINE ===== */
 (()=>{const c=document.createElement('canvas');c.width=c.height=180;const x=c.getContext('2d'),g=x.createLinearGradient(0,0,180,180);
   g.addColorStop(0,'#5b7a99');g.addColorStop(1,'#0e1424');x.fillStyle=g;x.fillRect(0,0,180,180);
   x.fillStyle='#f2c14e';x.fillRect(0,150,180,30);x.fillStyle='#fff';x.font='130px "Apple Symbols","Segoe UI Symbol",serif';x.textAlign='center';x.fillText('♞\uFE0E',90,138);
   $('#ati').href=c.toDataURL('image/png')})();
-if('serviceWorker'in navigator&&location.protocol.startsWith('http'))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').then(r=>{reg=r}).catch(()=>{}));
 </script></body></html>
