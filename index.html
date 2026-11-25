@@ -91,7 +91,7 @@ h1{margin:0;font-size:clamp(36px,9vw,58px);font-weight:800;letter-spacing:-.02em
 .w{color:#2b3550}.b{color:#c3cbe0}.pc{shape-rendering:geometricPrecision}
 .q-hi .sq.l{background:linear-gradient(135deg,#f6e9cc,#e3cfa2)}.q-hi .sq.d{background:linear-gradient(135deg,#a8744a,#774a27)}
 .q-hi .sq{box-shadow:inset 0 0 0 .5px #0002}.q-hi .pc{filter:drop-shadow(0 3px 3px #000a)}
-.tl{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tl.c4{grid-template-columns:repeat(4,1fr)}
+.tl{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tl.g4{grid-template-columns:repeat(4,1fr)}
 .tl b{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 4px;border-radius:16px;background:var(--pan);border:2px solid transparent;font-size:14px;font-weight:700;text-align:center;cursor:pointer;transition:transform .12s}
 .tl b:active{transform:scale(.96)}.tl b i{font-style:normal;font-size:26px;line-height:1.2}.tl b small{font-weight:500;color:var(--mut);font-size:11px}
 .tl b.on{border-color:var(--gold);background:#2a3050}
@@ -109,6 +109,17 @@ h1{background:linear-gradient(180deg,#fff,#aebbdb);-webkit-background-clip:text;
 #sh .in{gap:16px}#sh h3{font-size:22px}
 .tl b svg{width:46px;height:46px}.tl b{padding:12px 4px}
 #sh .go{box-shadow:0 8px 20px #f2c14e44}
+#sh .tl{gap:10px}
+#sh .tl b{position:relative;background:#252f4d;border:2px solid #36436b;border-radius:18px;padding:12px 4px 10px;gap:7px;font-size:14px;color:#e6eaf6;transition:transform .12s,background .15s,border-color .15s}
+#sh .tl b:active{transform:scale(.96)}
+#sh .tl b.on{background:#3a3f66;border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset,0 6px 16px #0006;color:#fff}
+#sh .tl b.on::after{content:"✓";position:absolute;top:-8px;right:-6px;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#1a1405;font-size:13px;font-weight:900;display:grid;place-items:center;line-height:1}
+.ic{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;box-shadow:inset 0 0 0 1px #ffffff2e,0 3px 8px #0005}
+.ic svg{width:42px!important;height:42px!important}.ic.sq2{width:64px;height:64px;border-radius:14px}.ic.sq2 svg{width:54px!important;height:54px!important}
+.dt{display:flex;gap:4px;height:6px}.dt u{width:6px;height:6px;border-radius:50%;background:#46507a}.dt u.f{background:var(--gold)}
+#sh .tl b small{font-size:12px;color:#a9b3cf;margin-top:-4px}
+.clk{width:52px;height:52px}
+#sh .tl.g4 b{padding-top:10px}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <linearGradient id="gw" gradientUnits="userSpaceOnUse" x1="20" y1="10" x2="85" y2="90"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#a9b5cc"/></linearGradient>
@@ -130,9 +141,9 @@ h1{background:linear-gradient(180deg,#fff,#aebbdb);-webkit-background-clip:text;
 <div class="bar"><button id="bB">◀ Lùi</button><button id="bF">Tiến ▶</button><button id="bN">Ván mới</button><button id="bM">Menu</button></div>
 </section>
 <div class="sheet" id="sh"><div class="in"><div class="grab"></div><h3 id="shT"></h3>
-<div class="g" id="gLv"><label>Cấp độ máy</label><div class="tl c4" data-k="lv"><b data-v="0"><i>🌱</i>Siêu dễ</b><b data-v="1"><i>🙂</i>Dễ</b><b data-v="2" class="on"><i>🧠</i>Vừa</b><b data-v="3"><i>🔥</i>Khó</b></div></div>
-<div class="g" id="gCol"><label>Bạn cầm quân</label><div class="tl" data-k="col"><b data-v="w" class="on"><svg viewBox="0 0 100 100" class="w"><use href="#K"/></svg>Trắng</b><b data-v="b"><svg viewBox="0 0 100 100" class="b"><use href="#K"/></svg>Đen</b></div></div>
-<div class="g" id="gTm"><label>Thời gian mỗi bên</label><div class="tl c4" data-k="tm"><b data-v="60000"><i>1</i><small>phút</small></b><b data-v="180000" class="on"><i>3</i><small>phút</small></b><b data-v="300000"><i>5</i><small>phút</small></b><b data-v="600000"><i>10</i><small>phút</small></b></div></div>
+<div class="g" id="gLv"><label>Cấp độ máy</label><div class="tl g4" data-k="lv"><b data-v="0"><span class="ic" style="background:linear-gradient(150deg,#3fae6b,#1f6b46)"><svg viewBox="0 0 100 100" class="w"><use href="#P"/></svg></span>Siêu dễ<em class="dt"><u class="f"></u><u></u><u></u><u></u></em></b><b data-v="1"><span class="ic" style="background:linear-gradient(150deg,#3a8fd6,#21508a)"><svg viewBox="0 0 100 100" class="w"><use href="#N"/></svg></span>Dễ<em class="dt"><u class="f"></u><u class="f"></u><u></u><u></u></em></b><b data-v="2" class="on"><span class="ic" style="background:linear-gradient(150deg,#e0a030,#8a5a1d)"><svg viewBox="0 0 100 100" class="w"><use href="#B"/></svg></span>Vừa<em class="dt"><u class="f"></u><u class="f"></u><u class="f"></u><u></u></em></b><b data-v="3"><span class="ic" style="background:linear-gradient(150deg,#e5484d,#8a1f2c)"><svg viewBox="0 0 100 100" class="w"><use href="#Q"/></svg></span>Khó<em class="dt"><u class="f"></u><u class="f"></u><u class="f"></u><u class="f"></u></em></b></div></div>
+<div class="g" id="gCol"><label>Bạn cầm quân</label><div class="tl" data-k="col"><b data-v="w" class="on"><span class="ic sq2" style="background:#8b5e3c"><svg viewBox="0 0 100 100" class="w"><use href="#K"/></svg></span>Quân Trắng<small>Đi trước</small></b><b data-v="b"><span class="ic sq2" style="background:#ecdcb9"><svg viewBox="0 0 100 100" class="b" style="color:#c3cbe0"><use href="#K"/></svg></span>Quân Đen<small>Đi sau</small></b></div></div>
+<div class="g" id="gTm"><label>Thời gian mỗi bên</label><div class="tl g4" data-k="tm"><b data-v="60000"><svg class="clk" viewBox="0 0 48 48"><circle cx="24" cy="24" r="19" fill="none" stroke="#3a4670" stroke-width="4"/><circle cx="24" cy="24" r="19" fill="none" stroke="#f2c14e" stroke-width="4" stroke-linecap="round" stroke-dasharray="11.9 119.4" transform="rotate(-90 24 24)"/><text x="24" y="30" text-anchor="middle" font-size="17" font-weight="800" fill="#fff">1</text></svg>1 phút</b><b data-v="180000" class="on"><svg class="clk" viewBox="0 0 48 48"><circle cx="24" cy="24" r="19" fill="none" stroke="#3a4670" stroke-width="4"/><circle cx="24" cy="24" r="19" fill="none" stroke="#f2c14e" stroke-width="4" stroke-linecap="round" stroke-dasharray="35.8 119.4" transform="rotate(-90 24 24)"/><text x="24" y="30" text-anchor="middle" font-size="17" font-weight="800" fill="#fff">3</text></svg>3 phút</b><b data-v="300000"><svg class="clk" viewBox="0 0 48 48"><circle cx="24" cy="24" r="19" fill="none" stroke="#3a4670" stroke-width="4"/><circle cx="24" cy="24" r="19" fill="none" stroke="#f2c14e" stroke-width="4" stroke-linecap="round" stroke-dasharray="59.7 119.4" transform="rotate(-90 24 24)"/><text x="24" y="30" text-anchor="middle" font-size="17" font-weight="800" fill="#fff">5</text></svg>5 phút</b><b data-v="600000"><svg class="clk" viewBox="0 0 48 48"><circle cx="24" cy="24" r="19" fill="none" stroke="#3a4670" stroke-width="4"/><circle cx="24" cy="24" r="19" fill="none" stroke="#f2c14e" stroke-width="4" stroke-linecap="round" stroke-dasharray="119.4 119.4" transform="rotate(-90 24 24)"/><text x="24" y="30" text-anchor="middle" font-size="17" font-weight="800" fill="#fff">10</text></svg>10 phút</b></div></div>
 <button class="go" id="go">Bắt đầu chơi</button></div></div>
 <div class="sheet" id="se"><div class="in"><h3>Cài đặt</h3>
 <button class="q" data-q="hi"><span>💎</span><div><b>Siêu sắc nét</b><small>Quân cờ chi tiết, bóng đổ, hiệu ứng mượt</small></div></button>
@@ -362,7 +373,7 @@ document.addEventListener('visibilitychange',()=>{if(!sau)return;document.hidden
 setMu();setQ(Q);
 
 /* ===== TỰ ĐỘNG KIỂM TRA & CẬP NHẬT ===== */
-const VER='3.1.1';let reg,nv=null,aut=localStorage.getItem('au')!=='0',upd=0;
+const VER='3.1.2';let reg,nv=null,aut=localStorage.getItem('au')!=='0',upd=0;
 const sl=ms=>new Promise(r=>setTimeout(r,ms)),us=t=>$('#us').textContent=t;
 async function cup(man){us('Đang kiểm tra…');
   try{if(reg)await reg.update().catch(()=>{});const t=await(await fetch('sw.js?'+Date.now(),{cache:'no-store'})).text(),m=t.match(/VER='([^']+)'/);
