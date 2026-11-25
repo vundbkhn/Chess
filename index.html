@@ -91,13 +91,24 @@ h1{margin:0;font-size:clamp(36px,9vw,58px);font-weight:800;letter-spacing:-.02em
 .w{color:#2b3550}.b{color:#c3cbe0}.pc{shape-rendering:geometricPrecision}
 .q-hi .sq.l{background:linear-gradient(135deg,#f6e9cc,#e3cfa2)}.q-hi .sq.d{background:linear-gradient(135deg,#a8744a,#774a27)}
 .q-hi .sq{box-shadow:inset 0 0 0 .5px #0002}.q-hi .pc{filter:drop-shadow(0 3px 3px #000a)}
-#menu{justify-content:flex-start;overflow-y:auto;padding-top:62px;gap:12px}#menu h1{font-size:34px}#menu .sub{margin:-6px 0 2px}
-#mn{width:min(560px,100%);display:flex;flex-direction:column;gap:14px}
 .tl{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tl.c4{grid-template-columns:repeat(4,1fr)}
 .tl b{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 4px;border-radius:16px;background:var(--pan);border:2px solid transparent;font-size:14px;font-weight:700;text-align:center;cursor:pointer;transition:transform .12s}
 .tl b:active{transform:scale(.96)}.tl b i{font-style:normal;font-size:26px;line-height:1.2}.tl b small{font-weight:500;color:var(--mut);font-size:11px}
 .tl b.on{border-color:var(--gold);background:#2a3050}
-#go{width:min(560px,100%);flex:none;margin-top:auto;position:sticky;bottom:6px}
+#menu{justify-content:center}
+h1{background:linear-gradient(180deg,#fff,#aebbdb);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{letter-spacing:.03em}
+.cd{position:relative;isolation:isolate;animation:cin .5s both;border:1px solid #ffffff26}
+.cd:nth-child(2){animation-delay:.07s}.cd:nth-child(3){animation-delay:.14s}.cd:nth-child(4){animation-delay:.21s}
+.cd::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(90% 60% at 15% 0,#ffffff3a,transparent 60%),radial-gradient(60% 50% at 100% 100%,#0000004d,transparent)}
+.cd>svg{filter:drop-shadow(0 8px 10px #0005);transition:transform .25s}.cd:active>svg{transform:translateY(-3px) scale(1.04)}
+.cd b::after{content:" ›";opacity:.7}
+@keyframes cin{from{opacity:0;transform:translateY(14px) scale(.97)}}
+.q-lo .cd{animation:none}@media(prefers-reduced-motion:reduce){.cd{animation:none}}
+.grab{width:42px;height:5px;border-radius:3px;background:#ffffff33;align-self:center;margin:-6px 0 2px}
+#sh .in{gap:16px}#sh h3{font-size:22px}
+.tl b svg{width:46px;height:46px}.tl b{padding:12px 4px}
+#sh .go{box-shadow:0 8px 20px #f2c14e44}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <linearGradient id="gw" gradientUnits="userSpaceOnUse" x1="20" y1="10" x2="85" y2="90"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#a9b5cc"/></linearGradient>
@@ -110,14 +121,7 @@ h1{margin:0;font-size:clamp(36px,9vw,58px);font-weight:800;letter-spacing:-.02em
 <symbol id="K" viewBox="0 0 100 100"><path d="M46 5h8v8h8v8h-8v8h-8v-8h-8v-8h8z"/><path d="M50 32c20-6 34 6 28 22-2 8-8 12-10 14H32c-2-2-8-6-10-14-6-16 8-28 28-22z"/><rect x="24" y="68" width="52" height="9" rx="4.5"/><rect x="19" y="77" width="62" height="11" rx="5.5"/><path class="h" d="M34 42c3-5 8-8 14-8-7 3-11 8-12 15z"/><path class="d" d="M50 33v34M26 62h48M24 82h52"/></symbol>
 </defs></svg>
 <button class="rb" id="gear" aria-label="Cài đặt">⚙️</button><button class="rb" id="mu" aria-label="Nhạc">🎵</button>
-<section id="menu" class="scr on"><h1><svg width="40" height="40" viewBox="0 0 100 100" class="w"><use href="#N" width="100" height="100"/></svg>Cờ Vua</h1><p class="sub">Thiết lập ván đấu</p>
-<div id="mn">
-<div class="g"><label>Thể loại</label><div class="tl" data-k="kind"><b data-v="normal" class="on"><i>♞</i>Cờ thường<small>Không giới hạn giờ</small></b><b data-v="blitz"><i>⚡</i>Cờ chớp<small>Có đồng hồ</small></b></div></div>
-<div class="g"><label>Đối thủ</label><div class="tl" data-k="vs"><b data-v="ai" class="on"><i>🤖</i>Chơi với máy</b><b data-v="2p"><i>👥</i>2 người</b></div></div>
-<div class="g" id="gLv"><label>Cấp độ máy</label><div class="tl c4" data-k="lv"><b data-v="0"><i>🌱</i>Siêu dễ</b><b data-v="1"><i>🙂</i>Dễ</b><b data-v="2" class="on"><i>🧠</i>Vừa</b><b data-v="3"><i>🔥</i>Khó</b></div></div>
-<div class="g" id="gCol"><label>Bạn cầm quân</label><div class="tl" data-k="col"><b data-v="w" class="on"><i>♔</i>Trắng</b><b data-v="b"><i>♚</i>Đen</b></div></div>
-<div class="g" id="gTm" hidden><label>Thời gian mỗi bên</label><div class="tl c4" data-k="tm"><b data-v="60000">1<small>phút</small></b><b data-v="180000" class="on">3<small>phút</small></b><b data-v="300000">5<small>phút</small></b><b data-v="600000">10<small>phút</small></b></div></div>
-</div><button class="go" id="go">Bắt đầu chơi</button></section>
+<section id="menu" class="scr on"><h1><svg width="52" height="52" viewBox="0 0 100 100" class="w"><use href="#N" width="100" height="100"/></svg>Cờ Vua</h1><p class="sub">Chọn chế độ chơi</p><div id="cards"></div></section>
 <section id="game" class="scr">
 <div class="pan" id="pT"><span class="nm"></span><span class="ck"></span></div>
 <div id="fr"><div id="bd"></div></div>
@@ -125,6 +129,11 @@ h1{margin:0;font-size:clamp(36px,9vw,58px);font-weight:800;letter-spacing:-.02em
 <div id="st"></div>
 <div class="bar"><button id="bB">◀ Lùi</button><button id="bF">Tiến ▶</button><button id="bN">Ván mới</button><button id="bM">Menu</button></div>
 </section>
+<div class="sheet" id="sh"><div class="in"><div class="grab"></div><h3 id="shT"></h3>
+<div class="g" id="gLv"><label>Cấp độ máy</label><div class="tl c4" data-k="lv"><b data-v="0"><i>🌱</i>Siêu dễ</b><b data-v="1"><i>🙂</i>Dễ</b><b data-v="2" class="on"><i>🧠</i>Vừa</b><b data-v="3"><i>🔥</i>Khó</b></div></div>
+<div class="g" id="gCol"><label>Bạn cầm quân</label><div class="tl" data-k="col"><b data-v="w" class="on"><svg viewBox="0 0 100 100" class="w"><use href="#K"/></svg>Trắng</b><b data-v="b"><svg viewBox="0 0 100 100" class="b"><use href="#K"/></svg>Đen</b></div></div>
+<div class="g" id="gTm"><label>Thời gian mỗi bên</label><div class="tl c4" data-k="tm"><b data-v="60000"><i>1</i><small>phút</small></b><b data-v="180000" class="on"><i>3</i><small>phút</small></b><b data-v="300000"><i>5</i><small>phút</small></b><b data-v="600000"><i>10</i><small>phút</small></b></div></div>
+<button class="go" id="go">Bắt đầu chơi</button></div></div>
 <div class="sheet" id="se"><div class="in"><h3>Cài đặt</h3>
 <button class="q" data-q="hi"><span>💎</span><div><b>Siêu sắc nét</b><small>Quân cờ chi tiết, bóng đổ, hiệu ứng mượt</small></div></button>
 <button class="q" data-q="mid"><span>✨</span><div><b>Bình thường</b><small>Cân bằng giữa đẹp, mượt và pin</small></div></button>
@@ -206,12 +215,20 @@ const flip=()=>opt.vs=='ai'&&human=='b';
 const u=(c,k,x,y,s)=>`<use class="${c}" href="#${k}" x="${x}" y="${y}" width="${s}" height="${s}"/>`;
 document.querySelectorAll('.seg b,.tl b').forEach(b=>b.onclick=()=>{const g=b.parentNode;g.querySelectorAll('b').forEach(x=>x.classList.toggle('on',x==b));const v=b.dataset.v;opt[g.dataset.k]=/^\d+$/.test(v)?+v:v});
 document.querySelectorAll('.sheet').forEach(s=>s.onclick=e=>{if(e.target==s)s.classList.remove('on')});
-try{Object.assign(opt,JSON.parse(localStorage.getItem('opt')||'{}'))}catch(e){}
+const ro=(x,y)=>`<g transform="translate(${x},${y})"><path d="M26 0v8" stroke="#8ff3e0" stroke-width="4"/><circle cx="26" cy="-3" r="4" fill="#f2c14e"/><rect y="8" width="52" height="42" rx="13" fill="#8ff3e0"/><circle cx="17" cy="26" r="6" fill="#0e1424"/><circle cx="35" cy="26" r="6" fill="#0e1424"/><rect x="17" y="38" width="18" height="4" rx="2" fill="#0e1424"/></g>`;
+const cl=(x,y)=>`<g transform="translate(${x},${y})"><circle cx="26" cy="26" r="25" fill="#fff" stroke="#f2c14e" stroke-width="5"/><path d="M26 10v16l11 7" fill="none" stroke="#0e1424" stroke-width="4" stroke-linecap="round"/></g>`;
+const CARDS=[['c1','normal','2p','Cờ thường','2 người chơi',u('w','K',6,14,84)+u('b','K',70,14,84)],
+['c2','normal','ai','Cờ thường','Chơi với máy',u('w','N',6,14,84)+ro(98,34)],
+['c3','blitz','2p','Cờ chớp','2 người, có đồng hồ',cl(10,30)+u('w','P',66,22,44)+u('b','P',108,22,44)],
+['c4','blitz','ai','Cờ chớp','Với máy, có đồng hồ',cl(6,30)+u('w','Q',56,16,50)+ro(104,34)]];
+$('#cards').innerHTML=CARDS.map((c,i)=>`<button class="cd ${c[0]}" data-i="${i}"><svg viewBox="0 0 160 110">${c[5]}</svg><b>${c[3]}</b><small>${c[4]}</small></button>`).join('');
+$('#cards').onclick=e=>{const b=e.target.closest('.cd');if(!b)return;const c=CARDS[+b.dataset.i];opt.kind=c[1];opt.vs=c[2];
+  if(c[1]=='normal'&&c[2]=='2p')return start();
+  $('#shT').textContent=c[3]+' · '+c[4];$('#gLv').hidden=$('#gCol').hidden=c[2]!='ai';$('#gTm').hidden=c[1]!='blitz';$('#sh').classList.add('on')};
+try{const o=JSON.parse(localStorage.getItem('opt')||'{}');for(const k of['lv','col','tm'])if(o[k]!=null)opt[k]=o[k]}catch(e){}
 document.querySelectorAll('.tl').forEach(g=>g.querySelectorAll('b').forEach(b=>b.classList.toggle('on',String(opt[g.dataset.k])==b.dataset.v)));
-const sync=()=>{$('#gLv').hidden=$('#gCol').hidden=opt.vs!='ai';$('#gTm').hidden=opt.kind!='blitz'};
-document.querySelectorAll('.tl b').forEach(b=>b.addEventListener('click',sync));sync();
 const show=id=>document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('on',s.id==id));
-function start(){startMusic();localStorage.setItem('opt',JSON.stringify(opt));show('game');newGame()}
+function start(){startMusic();$('#sh').classList.remove('on');localStorage.setItem('opt',JSON.stringify(opt));show('game');newGame()}
 $('#go').onclick=start;
 function newGame(){S=init();hist=[];fut=[];sel=null;last=null;over=false;busy=false;blitz=opt.kind=='blitz';human=opt.col;
   clk={w:opt.tm,b:opt.tm};run='w';lt=performance.now();$('#ov').classList.remove('on');$('#cf').innerHTML='';
@@ -345,7 +362,7 @@ document.addEventListener('visibilitychange',()=>{if(!sau)return;document.hidden
 setMu();setQ(Q);
 
 /* ===== TỰ ĐỘNG KIỂM TRA & CẬP NHẬT ===== */
-const VER='3.1.0';let reg,nv=null,aut=localStorage.getItem('au')!=='0',upd=0;
+const VER='3.1.1';let reg,nv=null,aut=localStorage.getItem('au')!=='0',upd=0;
 const sl=ms=>new Promise(r=>setTimeout(r,ms)),us=t=>$('#us').textContent=t;
 async function cup(man){us('Đang kiểm tra…');
   try{if(reg)await reg.update().catch(()=>{});const t=await(await fetch('sw.js?'+Date.now(),{cache:'no-store'})).text(),m=t.match(/VER='([^']+)'/);
