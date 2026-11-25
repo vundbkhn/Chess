@@ -146,7 +146,7 @@ h1{margin:0;font-size:clamp(36px,9vw,58px);font-weight:800;letter-spacing:-.02em
 #sh .tl.g4 b{padding-top:10px}
 
 /* ===== CÀI ĐẶT ===== */
-.set{padding:0 0 calc(14px + env(safe-area-inset-bottom));max-height:min(90dvh,780px);gap:0;background:linear-gradient(180deg,#222d4d,#171e35 45%)}
+.set{padding:0 0 calc(14px + env(safe-area-inset-bottom));max-height:90vh;max-height:min(90dvh,780px);gap:0;background:linear-gradient(180deg,#222d4d,#171e35 45%)}
 .set .grab{margin:10px auto 0}
 .sh-hd{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 8px}
 .sh-t{display:flex;align-items:center;gap:10px;color:#fff}.sh-t svg{width:26px;height:26px;color:var(--gold);--hole:#222d4d}.sh-t h3{font-size:22px}
@@ -160,7 +160,8 @@ h1{margin:0;font-size:clamp(36px,9vw,58px);font-weight:800;letter-spacing:-.02em
 .tb.on{color:#1a1405}
 .tb.nu::after{content:"";position:absolute;top:7px;left:calc(50% + 10px);width:9px;height:9px;border-radius:50%;background:#e5484d;box-shadow:0 0 0 2px #0e1424}
 .tb.on.nu::after{box-shadow:0 0 0 2px #f2b93b}
-.pbody{overflow-y:auto;overscroll-behavior:contain;padding:14px 16px 6px;min-height:0;flex:1}
+.pbody{overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:14px 16px 6px;min-height:0;flex:0 1 auto}
+.pn>*{flex:none}
 .pn{display:none;flex-direction:column;gap:10px}
 .pn.on{display:flex;animation:pin .22s both}
 @keyframes pin{from{opacity:0;transform:translateY(6px)}}
@@ -603,7 +604,7 @@ document.addEventListener('visibilitychange',()=>{if(!sau)return;document.hidden
 setMu();syncAu();setQ(Q);
 
 /* ===== TỰ ĐỘNG KIỂM TRA & CẬP NHẬT ===== */
-const VER='3.3.0';let reg,nv=null,aut=localStorage.getItem('au')!=='0',upd=0;
+const VER='3.3.1';let reg,nv=null,aut=localStorage.getItem('au')!=='0',upd=0;
 const sl=ms=>new Promise(r=>setTimeout(r,ms)),us=(t,k)=>{$('#us').textContent=t;$('#dot').className='dot '+(k||'')};
 async function cup(man){us('Đang kiểm tra…','busy');
   try{if(reg)await reg.update().catch(()=>{});const t=await(await fetch('sw.js?'+Date.now(),{cache:'no-store'})).text(),m=t.match(/VER='([^']+)'/);
