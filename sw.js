@@ -1,4 +1,4 @@
-const VER='3.3.1',C='co-vua-'+VER,A=['./','./index.html'];
+const VER='3.3.2',C='co-vua-'+VER,A=['./','./index.html'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(A.map(u=>new Request(u,{cache:'reload'}))))));
 self.addEventListener('message',e=>{if(e.data==='skip')self.skipWaiting()});
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!=C).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
